@@ -16,7 +16,7 @@ spec:
       containers:
         - name: hello-world
           image:
-            repository: https://172.22.16.146:8085/hello-world
+            repository: 172.22.16.146:8085/hello-world
             tag: latest
           resources:
             requests:
