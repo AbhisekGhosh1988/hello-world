@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -14,44 +15,31 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: https://172.22.16.146:8085/hello-world:latest
-
+          image: 172.22.16.146:8085/hello-world:latest
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "512m"
+              memory: '256Mi'
+              cpu: '500m'
             limits:
-              memory: "128Mi"
-              cpu: "512m"
-        imagePullSecrets:
-          -name: nexus
+              memory: '512Mi'
+              cpu: '1'
           ports:
-            - containerPort: 8082
-
+            - name: http
+              containerPort: 8082
           readinessProbe:
             httpGet:
-              path: /hello
-              port: 8082
-            initialDelaySeconds: 15
-            periodSeconds: 10
-
+              path: /demo/status
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 6
           livenessProbe:
             httpGet:
-              path: /hello
-              port: 8082
-            initialDelaySeconds: 15
-            periodSeconds: 10
-
-          startupProbe:
-            httpGet:
-              path: /hello
-              port: 8082
-            failureThreshold: 30
-            periodSeconds: 10
-
-          env:
-            - name: PORT
-              value: "8082"
+              path: /demo/status
+              port: http
+            initialDelaySeconds: 120
+      imagePullSecrets:
+        - name: nexus
 ---
 apiVersion: v1
 kind: Service
