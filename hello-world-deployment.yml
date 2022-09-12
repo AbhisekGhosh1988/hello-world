@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: http://127.0.0.1:8081/repository/docker-repository/v2/hello-world/latest
+          image: http://127.0.0.1:8081/docker-repository/v2/hello-world/latest
 
           resources:
             requests:
