@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: http://127.0.0.1:8085/hello-world:latest
+          image: http://172.22.16.146:8085/hello-world:latest
 
           resources:
             requests:
