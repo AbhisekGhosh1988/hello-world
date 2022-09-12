@@ -23,7 +23,8 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "512m"
-
+        imagePullSecrets:
+          -name: nexus
           ports:
             - containerPort: 8082
 
