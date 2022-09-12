@@ -15,9 +15,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image:
-            repository: 172.22.16.146:8085/hello-world
-            tag: latest
+          image: 172.22.16.146:8085/hello-world:latest
           resources:
             requests:
               memory: '256Mi'
